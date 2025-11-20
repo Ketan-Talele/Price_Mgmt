@@ -10,6 +10,29 @@ interface Batch {
   status: string;
 }
 
+const NotificationBell = () => (
+  <button
+    type="button"
+    className="w-10 h-10 rounded-full border border-gray-200 bg-gradient-to-b from-white to-gray-100 shadow-sm flex items-center justify-center hover:shadow transition-shadow"
+    aria-label="Notifications"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4.5 h-4.5 text-gray-500"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 16v-4a6 6 0 1 0-12 0v4l-1.5 2h15Z" />
+      <path d="M9 18h6" />
+      <path d="M10 20c0 1.1.9 2 2 2s2-.9 2-2" />
+    </svg>
+  </button>
+);
+
 interface Order {
   orderNo: string;
   customer: string;
@@ -279,7 +302,10 @@ export default function App() {
       {screen === "analyze_batch" && selectedBatch && (
         <div className="max-w-5xl mx-auto mt-8 text-sm">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold">Analyse Batch – {selectedBatch.batchNo}</h2>
+            <div className="flex items-center gap-3">
+              <h2 className="text-lg font-bold">Analyse Batch – {selectedBatch.batchNo}</h2>
+              <NotificationBell />
+            </div>
             <button onClick={go("work_price")} className="text-blue-600 text-sm">
               ← Back to Batches
             </button>
