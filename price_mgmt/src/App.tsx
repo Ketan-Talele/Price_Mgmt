@@ -24,6 +24,23 @@ interface Order {
   comment: string
 }
 
+interface SalesDeviation {
+  customer: string
+  product: string
+  orderNo: string
+  orderType: string
+  salesChannel: string
+  region: string
+  price: number
+  min: number
+  target: number
+  deviation: number
+  deviationPercent: number
+  comment: string
+  commentStatus: "approved" | "pending" | "rejected" | ""
+  action: string
+}
+
 export default function App() {
   const [screen, setScreen] = useState("login")
   const [role, setRole] = useState<"priceManager" | "sales" | "director">("sales")
@@ -334,6 +351,121 @@ export default function App() {
     },
   ]
 
+  const salesDeviationData: SalesDeviation[] = [
+    {
+      customer: "100001",
+      product: "BNS 10",
+      orderNo: "10010",
+      orderType: "SO",
+      salesChannel: "1201",
+      region: "Europe",
+      price: 1260,
+      min: 1250,
+      target: 1456,
+      deviation: 10,
+      deviationPercent: 0.81,
+      comment: "",
+      commentStatus: "",
+      action: "",
+    },
+    {
+      customer: "100001",
+      product: "BNS 14",
+      orderNo: "10011",
+      orderType: "SO",
+      salesChannel: "1201",
+      region: "Europe",
+      price: 1180,
+      min: 1225,
+      target: 1669,
+      deviation: -45,
+      deviationPercent: -3.66,
+      comment: "Approved till 31/12/2025",
+      commentStatus: "approved",
+      action: "",
+    },
+    {
+      customer: "100001",
+      product: "BNS 150",
+      orderNo: "10012",
+      orderType: "SO",
+      salesChannel: "1203",
+      region: "Europe",
+      price: 1000,
+      min: 1040,
+      target: 1372,
+      deviation: -40,
+      deviationPercent: -3.81,
+      comment: "Approved till 31/03/2026",
+      commentStatus: "approved",
+      action: "",
+    },
+    {
+      customer: "100002",
+      product: "BNS 10",
+      orderNo: "10013",
+      orderType: "SO",
+      salesChannel: "1203",
+      region: "Europe",
+      price: 1210,
+      min: 1250,
+      target: 1456,
+      deviation: -40,
+      deviationPercent: -3.19,
+      comment: "Approved till 30/11/2025",
+      commentStatus: "approved",
+      action: "",
+    },
+    {
+      customer: "100002",
+      product: "BNS 14",
+      orderNo: "10014",
+      orderType: "SO",
+      salesChannel: "1203",
+      region: "Europe",
+      price: 1150,
+      min: 1225,
+      target: 1669,
+      deviation: -75,
+      deviationPercent: -6.11,
+      comment: "Approval Pending",
+      commentStatus: "pending",
+      action: "Send for Approval",
+    },
+    {
+      customer: "100003",
+      product: "BNS 10",
+      orderNo: "10015",
+      orderType: "SO",
+      salesChannel: "1212",
+      region: "ECO",
+      price: 1230,
+      min: 1224,
+      target: 1385,
+      deviation: 6,
+      deviationPercent: 0.52,
+      comment: "",
+      commentStatus: "",
+      action: "",
+    },
+    {
+      customer: "100005",
+      product: "BNS 30",
+      orderNo: "10016",
+      orderType: "SO",
+      salesChannel: "1212",
+      region: "ECO",
+      price: 900,
+      min: 1037,
+      target: 1308,
+      deviation: -137,
+      deviationPercent: -13.19,
+      comment: "Rejected : Try to negotiate below 10%",
+      commentStatus: "rejected",
+      action: "",
+    },
+  ]
+
   return (
     <div className="p-4 font-sans min-h-screen bg-gray-100">
       {/* LOGIN */}
@@ -370,52 +502,59 @@ export default function App() {
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {(role === "priceManager" || role === "sales") && (
+                {(role === "priceManager" || role === "sales") && (
               <button onClick={go("work_price")} className="p-4 bg-white shadow rounded text-left">
-                <div className="font-semibold mb-1">Work With Price</div>
+                    <div className="font-semibold mb-1">Work With Price</div>
                 <div className="text-xs text-gray-500">View and manage published price batches.</div>
-              </button>
-            )}
+                  </button>
+                )}
 
-            {role === "priceManager" && (
+                {role === "priceManager" && (
               <button onClick={go("price_calc_rules_list")} className="p-4 bg-white shadow rounded text-left">
-                <div className="font-semibold mb-1">Price Calculation Rule</div>
+                      <div className="font-semibold mb-1">Price Calculation Rule</div>
                 <div className="text-xs text-gray-500">Maintain Oil / Forex based pricing rules.</div>
-              </button>
+                    </button>
             )}
 
             {role === "priceManager" && (
               <button onClick={go("upload_price")} className="p-4 bg-white shadow rounded text-left">
-                <div className="font-semibold mb-1">Upload Price List</div>
+                      <div className="font-semibold mb-1">Upload Price List</div>
                 <div className="text-xs text-gray-500">Import analysed prices from Excel and create a batch.</div>
-              </button>
+                    </button>
             )}
 
             {role === "priceManager" && (
               <button onClick={go("price_validation_rules_list")} className="p-4 bg-white shadow rounded text-left">
-                <div className="font-semibold mb-1">Price Validation Rule</div>
+                      <div className="font-semibold mb-1">Price Validation Rule</div>
                 <div className="text-xs text-gray-500">Set tolerance limits and approval workflows.</div>
-              </button>
-            )}
+                    </button>
+                )}
 
-            {role === "sales" && (
+                {role === "sales" && (
               <button onClick={go("price_inquiry")} className="p-4 bg-white shadow rounded text-left">
-                <div className="font-semibold mb-1">Price Inquiry</div>
+                      <div className="font-semibold mb-1">Price Inquiry</div>
                 <div className="text-xs text-gray-500">Check minimum & target price before quoting.</div>
-              </button>
+                    </button>
             )}
 
             {role === "sales" && (
               <button onClick={go("create_order")} className="p-4 bg-white shadow rounded text-left">
-                <div className="font-semibold mb-1">Create Order</div>
+                      <div className="font-semibold mb-1">Create Order</div>
                 <div className="text-xs text-gray-500">Simulate SO pricing and submit for approval if required.</div>
-              </button>
+                    </button>
             )}
 
             {role === "sales" && (
               <button onClick={go("order_status")} className="p-4 bg-white shadow rounded text-left">
                 <div className="font-semibold mb-1">Order Status</div>
                 <div className="text-xs text-gray-500">Track approval status of submitted orders.</div>
+              </button>
+            )}
+
+            {role === "sales" && (
+              <button onClick={go("sales_deviation_analysis")} className="p-4 bg-white shadow rounded text-left">
+                <div className="font-semibold mb-1">Sales Deviation Analysis</div>
+                <div className="text-xs text-gray-500">Analyze sales price deviations from minimum and target prices.</div>
               </button>
             )}
 
@@ -496,8 +635,8 @@ export default function App() {
           </div>
           <div className="bg-white rounded shadow overflow-x-auto">
             <table className="w-full text-sm whitespace-nowrap">
-              <thead>
-                <tr className="border-b bg-gray-50">
+            <thead>
+              <tr className="border-b bg-gray-50">
                   <th className="p-2 text-left font-semibold">Item/Family</th>
                   <th className="p-2 text-left font-semibold">Region</th>
                   <th className="p-2 text-left font-semibold">Depot Name</th>
@@ -514,9 +653,9 @@ export default function App() {
                   </th>
                   <th className="p-2 text-right font-semibold">Min Margin %</th>
                   <th className="p-2 text-right font-semibold">Target Margin %</th>
-                </tr>
-              </thead>
-              <tbody>
+              </tr>
+            </thead>
+            <tbody>
                 {priceCalculationRules.map((rule, index) => (
                   <tr key={index} className="border-b last:border-none hover:bg-gray-50">
                     <td className="p-2">{rule.itemFamily}</td>
@@ -530,10 +669,10 @@ export default function App() {
                     <td className="p-2">{rule.calculatedPrice}</td>
                     <td className="p-2 text-right">{rule.minMargin}</td>
                     <td className="p-2 text-right">{rule.targetMargin}</td>
-                  </tr>
+              </tr>
                 ))}
-              </tbody>
-            </table>
+            </tbody>
+          </table>
           </div>
         </div>
       )}
@@ -874,7 +1013,7 @@ export default function App() {
             <h2 className="text-lg font-bold">Price Inquiry</h2>
             <button onClick={go("home")} className="text-blue-600 text-sm">
               ← Back
-            </button>
+        </button>
           </div>
           <div className="grid md:grid-cols-2 gap-3 mb-4">
             <div>
@@ -919,8 +1058,8 @@ export default function App() {
           <p className="mt-3 text-[11px] text-gray-400">
             Sales should aim for Target Price. If you need to go below Minimum, you must create an approval request via
             Create Order.
-          </p>
-        </div>
+        </p>
+      </div>
       )}
 
       {/* ORDER STATUS – SALES */}
@@ -975,6 +1114,104 @@ export default function App() {
                       </span>
                     </td>
                     <td className="p-2 text-gray-500">{order.comment}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+      </div>
+      )}
+
+      {/* SALES DEVIATION ANALYSIS */}
+      {screen === "sales_deviation_analysis" && (
+        <div className="max-w-6xl mx-auto mt-8 bg-white p-6 rounded shadow text-sm">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-bold">Sales Deviation Analysis</h2>
+            <button onClick={go("home")} className="text-blue-600 text-sm">
+              ← Back
+            </button>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
+            <div>
+              <label className="block text-xs font-medium mb-1">Sales Person</label>
+              <select className="w-full p-2 border rounded">
+                <option>Sales Person 1</option>
+                <option>Sales Person 2</option>
+                <option>Sales Person 3</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-medium mb-1">Date From</label>
+              <input type="date" className="w-full p-2 border rounded" defaultValue="2025-10-01" />
+            </div>
+            <div>
+              <label className="block text-xs font-medium mb-1">Date To</label>
+              <input type="date" className="w-full p-2 border rounded" defaultValue="2025-10-31" />
+            </div>
+          </div>
+          <div className="overflow-x-auto bg-white rounded shadow">
+            <table className="w-full text-xs border-collapse border border-gray-300">
+              <thead>
+                <tr className="border-b bg-gray-50 border-gray-300">
+                  <th className="p-2 text-left font-semibold border border-gray-300">Customer</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Product</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Order No</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Order Type</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Sales Channel</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Region</th>
+                  <th className="p-2 text-right font-semibold border border-gray-300">Price</th>
+                  <th className="p-2 text-right font-semibold border border-gray-300">Min</th>
+                  <th className="p-2 text-right font-semibold border border-gray-300">Target</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Deviation from</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Comment</th>
+                  <th className="p-2 text-left font-semibold border border-gray-300">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {salesDeviationData.map((row, index) => (
+                  <tr key={index} className="border-b border-gray-300 hover:bg-gray-50">
+                    <td className="p-2 border border-gray-300">{row.customer}</td>
+                    <td className="p-2 border border-gray-300">{row.product}</td>
+                    <td className="p-2 border border-gray-300">{row.orderNo}</td>
+                    <td className="p-2 border border-gray-300">{row.orderType}</td>
+                    <td className="p-2 border border-gray-300">{row.salesChannel}</td>
+                    <td className="p-2 border border-gray-300">{row.region}</td>
+                    <td className="p-2 text-right border border-gray-300">{row.price.toLocaleString()}</td>
+                    <td className="p-2 text-right border border-gray-300">{row.min.toLocaleString()}</td>
+                    <td className="p-2 text-right border border-gray-300">{row.target.toLocaleString()}</td>
+                    <td className="p-2 border border-gray-300">
+                      {row.deviationPercent >= 0 ? (
+                        <span className="text-green-600 flex items-center gap-1">
+                          <span>↑</span>
+                          <span>{row.deviationPercent.toFixed(2)}%</span>
+                        </span>
+                      ) : (
+                        <span className="text-red-600 flex items-center gap-1">
+                          <span>↓</span>
+                          <span>{row.deviationPercent.toFixed(2)}%</span>
+                        </span>
+                      )}
+                    </td>
+                    <td className="p-2 border border-gray-300">
+                      {row.comment && (
+                        <span
+                          className={
+                            row.commentStatus === "approved"
+                              ? "text-green-600"
+                              : row.commentStatus === "rejected" || row.commentStatus === "pending"
+                                ? "text-red-600"
+                                : ""
+                          }
+                        >
+                          {row.comment}
+                        </span>
+                      )}
+                    </td>
+                    <td className="p-2 border border-gray-300">
+                      {row.action && (
+                        <button className="text-blue-600 hover:underline text-xs">{row.action}</button>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -1155,7 +1392,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </div>
+          </div>
   )
 }
-
