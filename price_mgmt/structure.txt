@@ -1,0 +1,71 @@
+Folder PATH listing for volume New Volume
+Volume serial number is FCEC-AFE0
+D:\BITCOLLAGE\NEW-PRICE-MGMT\PRICE_MGMT\SRC
+|   App.tsx
+|   index.css
+|   main.tsx
+|   vite-env.d.ts
+|   
++---assets
+|       react.svg
+|       
++---components
+|   +---common
+|   |       Button.tsx
+|   |       Card.tsx
+|   |       Input.tsx
+|   |       
+|   \---tables
+|           BatchTable.tsx
+|           OrderTable.tsx
+|           SalesDeviationTable.tsx
+|           
++---data
+|       analysis.ts
+|       batches.ts
+|       orders.ts
+|       priceRules.ts
+|       salesDeviation.ts
+|       
++---features
++---layout
+|       MainLayout.tsx
+|       
++---lib
++---pages
+|   +---approval
+|   |       ApproveOrderDetail.tsx
+|   |       ApproveOrders.tsx
+|   |       
+|   +---auth
+|   |       Login.tsx
+|   |       
+|   +---home
+|   |       Home.tsx
+|   |       
+|   +---price
+|   |       AnalyzeBatch.tsx
+|   |       CreatePriceRule.tsx
+|   |       CreateValidationRule.tsx
+|   |       PriceCalculationRules.tsx
+|   |       PriceValidationRules.tsx
+|   |       UploadPrice.tsx
+|   |       WorkWithPrice.tsx
+|   |       
+|   \---sales
+|           CreateOrder.tsx
+|           OrderStatus.tsx
+|           PriceInquiry.tsx
+|           SalesDeviationAnalysis.tsx
+|           
++---routes
+|       AppRoutes.tsx
+|       
++---store
+|       authStore.tsx
+|       
+\---types
+        batch.ts
+        order.ts
+        sales.ts
+        
