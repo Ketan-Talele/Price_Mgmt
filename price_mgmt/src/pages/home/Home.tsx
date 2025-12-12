@@ -92,6 +92,18 @@ export default function Home({ onNavigate, onLogout }: HomeProps) {
           </button>
         )}
 
+        {role === 'priceManager' && (
+          <button
+            onClick={() => onNavigate('upload-base-price')}
+            className="p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+          >
+            <div className="font-semibold mb-1">Upload Base Price</div>
+            <div className="text-xs text-gray-500">
+              Upload base price data from Excel file with effective date.
+            </div>
+          </button>
+        )}
+
         {role === 'sales' && (
           <button
             onClick={() => onNavigate('price_inquiry')}
@@ -105,15 +117,53 @@ export default function Home({ onNavigate, onLogout }: HomeProps) {
         )}
 
         {role === 'sales' && (
-          <button
-            onClick={() => onNavigate('create_order')}
-            className="p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
-          >
-            <div className="font-semibold mb-1">Quote a Price</div>
-            <div className="text-xs text-gray-500">
-              Simulate Price for a Quote
-            </div>
-          </button>
+          <div className="md:col-span-2 flex gap-4">
+            <button
+              onClick={() => onNavigate('analyze_review_prices')}
+              className="flex-1 p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+            >
+              <div className="font-semibold mb-1">
+                Price Analysis &amp; Review{' '}
+              </div>
+              <div className="text-xs text-gray-500">
+                View the dashboard filtered to your sales channel (conceptual).
+              </div>
+            </button>
+            <button
+              onClick={() => onNavigate('sales_deviation_analysis')}
+              className="flex-1 p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+            >
+              <div className="font-semibold mb-1">Sales Deviation Analysis</div>
+              <div className="text-xs text-gray-500">
+                Sales Deviation Analysis{' '}
+                <span className="text-red-600">(To be Removed)</span>
+              </div>
+            </button>
+          </div>
+        )}
+
+        {role === 'sales' && (
+          <div className="md:col-span-2 flex gap-4">
+            <button
+              onClick={() => onNavigate('quote_price_1')}
+              className="flex-1 p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+            >
+              <div className="font-semibold mb-1">Quote a Price 1</div>
+              <div className="text-xs text-gray-500">
+                Simulate Price for a Quote (Original)
+              </div>
+            </button>
+            <button
+              onClick={() => onNavigate('quote_price_2')}
+              className="flex-1 p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+            >
+              <div className="font-semibold mb-1">Quote a Price 2</div>
+              <div className="text-xs text-gray-500">
+                Get a suggested price per customer &amp; product, with oil/FX
+                and service/packaging adjustments.
+              </div>
+            </button>
+          </div>
         )}
 
         {role === 'sales' && (
@@ -124,18 +174,6 @@ export default function Home({ onNavigate, onLogout }: HomeProps) {
             <div className="font-semibold mb-1">Order Status</div>
             <div className="text-xs text-gray-500">
               Order Status <span className="text-red-600">(To be Removed)</span>
-            </div>
-          </button>
-        )}
-
-        {role === 'sales' && (
-          <button
-            onClick={() => onNavigate('sales_deviation_analysis')}
-            className="p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
-          >
-            <div className="font-semibold mb-1">Sales Deviation Analysis</div>
-            <div className="text-xs text-gray-500">
-              Sales Deviation Analysis <span className="text-red-600">(To be Removed)</span>
             </div>
           </button>
         )}

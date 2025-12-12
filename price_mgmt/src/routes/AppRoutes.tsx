@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { useAuthStore } from "../store/authStore"
 import { batches } from "../data/batches"
+import UploadBasePrice from "../pages/price/UploadBasePrice"
+import BasePrice from "../pages/price/BasePrice"
+
 import type { Batch } from "../types/batch"
 import type { Order } from "../types/order"
 
@@ -16,8 +19,10 @@ import PriceValidationRules from "../pages/price/PriceValidationRules"
 import CreateValidationRule from "../pages/price/CreateValidationRule"
 import PackagingCost from "../pages/price/PackagingCost"
 import ServicesCost from "../pages/price/ServicesCost"
+import AnalyzeReviewPrices from "../pages/price/AnalyzeReviewPrices"
 import PriceInquiry from "../pages/sales/PriceInquiry"
 import CreateOrder from "../pages/sales/CreateOrder"
+import QuotePrice2 from "../pages/sales/QuotePrice2"
 import OrderStatus from "../pages/sales/OrderStatus"
 import SalesDeviationAnalysis from "../pages/sales/SalesDeviationAnalysis"
 import ApproveOrders from "../pages/approval/ApproveOrders"
@@ -93,12 +98,27 @@ export default function AppRoutes() {
 
     case "services_cost":
       return <ServicesCost onNavigate={navigate} />
+    
+    case "upload-base-price":
+      return <UploadBasePrice onNavigate={navigate} />
+
+    case "base_price":
+      return <BasePrice onNavigate={navigate} />
+
+    case "analyze_review_prices":
+      return <AnalyzeReviewPrices onNavigate={navigate} />
 
     case "price_inquiry":
       return <PriceInquiry onNavigate={navigate} />
 
     case "create_order":
       return <CreateOrder onNavigate={navigate} />
+
+    case "quote_price_1":
+      return <CreateOrder onNavigate={navigate} />
+
+    case "quote_price_2":
+      return <QuotePrice2 onNavigate={navigate} />
 
     case "order_status":
       return <OrderStatus onNavigate={navigate} />

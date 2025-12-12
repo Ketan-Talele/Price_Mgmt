@@ -33,10 +33,10 @@ export default function CreateOrder({ onNavigate }: CreateOrderProps) {
   }
 
   return (
-    <MainLayout title="Quote a Price" showBack onBack={() => onNavigate("home")}>
+    <MainLayout title="Quote a Price 1" showBack onBack={() => onNavigate("home")}>
       <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow text-sm">
         <div className="mb-6">
-          <h3 className="text-base font-semibold mb-4">Quote a Price</h3>
+          <h3 className="text-base font-semibold mb-4">Quote a Price 1</h3>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium mb-1">Customer</label>
