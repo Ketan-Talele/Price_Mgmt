@@ -8,7 +8,7 @@ interface OrderStatusProps {
 
 export default function OrderStatus({ onNavigate }: OrderStatusProps) {
   return (
-    <MainLayout title="Order Status" showBack onBack={() => onNavigate("home")}>
+    <MainLayout title="Price Status" showBack onBack={() => onNavigate("home")}>
       <div className="max-w-5xl mx-auto bg-white p-6 rounded shadow text-sm">
         <OrderTable orders={orderStatusData} />
       </div>

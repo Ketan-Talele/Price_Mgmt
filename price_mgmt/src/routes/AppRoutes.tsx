@@ -111,6 +111,9 @@ export default function AppRoutes() {
     case "price_inquiry":
       return <PriceInquiry onNavigate={navigate} />
 
+    case "request_approval":
+      return <PriceInquiry onNavigate={navigate} />
+
     case "create_order":
       return <CreateOrder onNavigate={navigate} />
 
@@ -121,6 +124,9 @@ export default function AppRoutes() {
       return <QuotePrice2 onNavigate={navigate} />
 
     case "order_status":
+      return <OrderStatus onNavigate={navigate} />
+
+    case "price_status":
       return <OrderStatus onNavigate={navigate} />
 
     case "sales_deviation_analysis":

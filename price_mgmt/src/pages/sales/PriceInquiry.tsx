@@ -1,18 +1,25 @@
-import MainLayout from "../../layout/MainLayout"
-import { REGIONS } from "../../data/mockData"
+import { REGIONS } from '../../data/mockData';
+import MainLayout from '../../layout/MainLayout';
 
 interface PriceInquiryProps {
-  onNavigate: (screen: string) => void
+  onNavigate: (screen: string) => void;
 }
 
 export default function PriceInquiry({ onNavigate }: PriceInquiryProps) {
   return (
-    <MainLayout title="Price Inquiry" showBack onBack={() => onNavigate("home")}>
+    <MainLayout
+      title="Request an Approval"
+      showBack
+      onBack={() => onNavigate('home')}
+    >
       <div className="max-w-2xl mx-auto bg-white p-6 rounded shadow text-sm">
         <div className="grid md:grid-cols-2 gap-3 mb-4">
           <div>
             <label className="block text-xs font-medium mb-1">Customer</label>
-            <input className="w-full p-2 border rounded" placeholder="ABC Plastics GmbH" />
+            <input
+              className="w-full p-2 border rounded"
+              placeholder="ABC Plastics GmbH"
+            />
           </div>
           <div>
             <label className="block text-xs font-medium mb-1">Region</label>
@@ -26,11 +33,20 @@ export default function PriceInquiry({ onNavigate }: PriceInquiryProps) {
           </div>
           <div className="md:col-span-2">
             <label className="block text-xs font-medium mb-1">Item</label>
-            <input className="w-full p-2 border rounded" placeholder="Base Oil 150" />
+            <input
+              className="w-full p-2 border rounded"
+              placeholder="Base Oil 150"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-xs font-medium mb-1">
+              Price for Approval
+            </label>
+            <input className="w-full p-2 border rounded" placeholder="950" />
           </div>
         </div>
         <button className="w-full bg-blue-600 text-white p-2 rounded mb-4 hover:bg-blue-700">
-          Get Price
+          Send to Approval
         </button>
         <div className="grid md:grid-cols-3 gap-3 text-xs">
           <div className="bg-gray-50 rounded p-3">
@@ -55,15 +71,10 @@ export default function PriceInquiry({ onNavigate }: PriceInquiryProps) {
           </div>
         </div>
         <p className="mt-3 text-[11px] text-gray-400">
-          Sales should aim for Target Price. If you need to go below Minimum, you must create an approval request via
-          Create Order.
+          Sales should aim for Target Price. If you need to go below Minimum,
+          submit an approval request.
         </p>
       </div>
     </MainLayout>
-  )
+  );
 }
-
-
-
-
-

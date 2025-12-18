@@ -1,48 +1,51 @@
-import { useState } from "react"
-import MainLayout from "../../layout/MainLayout"
-import { SERVICE_ITEMS, type ServiceItem } from "../../data/mockData"
+import { useState } from 'react';
+import { SERVICE_ITEMS, type ServiceItem } from '../../data/mockData';
+import MainLayout from '../../layout/MainLayout';
 
 interface ServicesCostProps {
-  onNavigate: (screen: string) => void
+  onNavigate: (screen: string) => void;
 }
 
 export default function ServicesCost({ onNavigate }: ServicesCostProps) {
-  const [serviceItems, setServiceItems] = useState<ServiceItem[]>(SERVICE_ITEMS)
-  const [editingId, setEditingId] = useState<string | null>(null)
-  const [editName, setEditName] = useState("")
-  const [editCost, setEditCost] = useState(0)
-  const [newName, setNewName] = useState("")
-  const [newCost, setNewCost] = useState(0)
+  const [serviceItems, setServiceItems] =
+    useState<ServiceItem[]>(SERVICE_ITEMS);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editName, setEditName] = useState('');
+  const [editCost, setEditCost] = useState(0);
+  const [newName, setNewName] = useState('');
+  const [newCost, setNewCost] = useState(0);
 
   const handleSave = () => {
     // Save logic would go here
-    console.log("Saving services costs:", serviceItems)
-  }
+    console.log('Saving services costs:', serviceItems);
+  };
 
   const handleEdit = (item: ServiceItem) => {
-    setEditingId(item.id)
-    setEditName(item.serviceName)
-    setEditCost(item.cost)
-  }
+    setEditingId(item.id);
+    setEditName(item.serviceName);
+    setEditCost(item.cost);
+  };
 
   const handleSaveEdit = () => {
     if (editingId) {
       setServiceItems(
         serviceItems.map((item) =>
-          item.id === editingId ? { ...item, serviceName: editName, cost: editCost } : item
-        )
-      )
-      setEditingId(null)
-      setEditName("")
-      setEditCost(0)
+          item.id === editingId
+            ? { ...item, serviceName: editName, cost: editCost }
+            : item,
+        ),
+      );
+      setEditingId(null);
+      setEditName('');
+      setEditCost(0);
     }
-  }
+  };
 
   const handleCancelEdit = () => {
-    setEditingId(null)
-    setEditName("")
-    setEditCost(0)
-  }
+    setEditingId(null);
+    setEditName('');
+    setEditCost(0);
+  };
 
   const handleAdd = () => {
     if (newName && newCost > 0) {
@@ -50,15 +53,19 @@ export default function ServicesCost({ onNavigate }: ServicesCostProps) {
         id: Date.now().toString(),
         serviceName: newName,
         cost: newCost,
-      }
-      setServiceItems([...serviceItems, newItem])
-      setNewName("")
-      setNewCost(0)
+      };
+      setServiceItems([...serviceItems, newItem]);
+      setNewName('');
+      setNewCost(0);
     }
-  }
+  };
 
   return (
-    <MainLayout title="Services Cost" showBack onBack={() => onNavigate("home")}>
+    <MainLayout
+      title="Services Cost"
+      showBack
+      onBack={() => onNavigate('home')}
+    >
       <div className="max-w-4xl mx-auto bg-white p-6 rounded shadow text-sm">
         <div className="mb-4">
           <button
@@ -72,7 +79,9 @@ export default function ServicesCost({ onNavigate }: ServicesCostProps) {
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-50 border-b">
-                <th className="p-3 text-left font-semibold border-r">Packaging Type</th>
+                <th className="p-3 text-left font-semibold border-r">
+                  Service Type
+                </th>
                 <th className="p-3 text-left font-semibold border-r">Cost</th>
                 <th className="p-3 text-left font-semibold">Action</th>
               </tr>
@@ -144,7 +153,7 @@ export default function ServicesCost({ onNavigate }: ServicesCostProps) {
                 <td className="p-3 border-r">
                   <input
                     type="number"
-                    value={newCost || ""}
+                    value={newCost || ''}
                     onChange={(e) => setNewCost(Number(e.target.value))}
                     placeholder="Enter cost"
                     className="w-full p-1 border rounded"
@@ -164,9 +173,5 @@ export default function ServicesCost({ onNavigate }: ServicesCostProps) {
         </div>
       </div>
     </MainLayout>
-  )
+  );
 }
-
-
-
-

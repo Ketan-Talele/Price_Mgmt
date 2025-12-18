@@ -13,7 +13,7 @@ export default function WorkWithPrice({ onNavigate, onAnalyzeBatch }: WorkWithPr
 
   return (
     <MainLayout
-      title="Work With Price"
+      title="Price List"
       showBack
       onBack={() => onNavigate("home")}
       actions={

@@ -9,6 +9,7 @@ export interface Order {
   qty: number
   justification: string
   approvalStatus: string
+  endDate?: string
   comment: string
 }
 

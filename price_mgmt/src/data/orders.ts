@@ -14,6 +14,7 @@ export const pendingOrders: Order[] = [
     qty: 12000,
     justification: "Strategic key account – volume commitment for 1 year.",
     approvalStatus: "Pending",
+    endDate: "31-Dec-2025",
     comment: "",
   },
 ]
@@ -32,6 +33,7 @@ export const orderStatusData: Order[] = [
     qty: 12000,
     justification: "",
     approvalStatus: "Pending",
+    endDate: "31-Dec-2025",
     comment: "",
   },
   {
@@ -45,6 +47,7 @@ export const orderStatusData: Order[] = [
     qty: 12000,
     justification: "",
     approvalStatus: "Approved",
+    endDate: "31-Dec-2025",
     comment: "Acceptable Limit",
   },
   {
@@ -58,6 +61,7 @@ export const orderStatusData: Order[] = [
     qty: 12000,
     justification: "",
     approvalStatus: "Rejected",
+    endDate: "31-Dec-2025",
     comment: "Try to negotiate below 5%",
   },
 ]

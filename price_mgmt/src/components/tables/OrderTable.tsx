@@ -11,22 +11,23 @@ export default function OrderTable({ orders, onReview }: OrderTableProps) {
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="border-b bg-gray-50 text-xs text-gray-500">
-            <th className="p-2 font-medium">Order No</th>
             <th className="p-2 font-medium">Customer</th>
             <th className="p-2 font-medium">Product</th>
+            <th className="p-2 font-medium">Region</th>
             <th className="p-2 font-medium">Req. Price</th>
             <th className="p-2 font-medium">Min/Target</th>
             <th className="p-2 font-medium">Deviation</th>
             <th className="p-2 font-medium">Approval Status</th>
+            <th className="p-2 font-medium">End Date</th>
             <th className="p-2 font-medium">Comment</th>
           </tr>
         </thead>
         <tbody className="text-xs">
           {orders.map((order) => (
             <tr key={order.orderNo} className="border-b hover:bg-gray-50">
-              <td className="p-2">{order.orderNo}</td>
               <td className="p-2">{order.customer}</td>
               <td className="p-2">{order.item}</td>
+              <td className="p-2">{order.region}</td>
               <td className="p-2">{order.requestedPrice}</td>
               <td className="p-2">
                 {order.minPrice} / {order.targetPrice}
@@ -49,6 +50,7 @@ export default function OrderTable({ orders, onReview }: OrderTableProps) {
                   {order.approvalStatus}
                 </span>
               </td>
+              <td className="p-2 text-gray-500">{order.endDate ?? ""}</td>
               <td className="p-2 text-gray-500">{order.comment}</td>
             </tr>
           ))}

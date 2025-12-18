@@ -8,7 +8,7 @@ interface ApproveOrderDetailProps {
 
 export default function ApproveOrderDetail({ order, onNavigate }: ApproveOrderDetailProps) {
   return (
-    <MainLayout title={`Approve Order – ${order.orderNo}`} showBack onBack={() => onNavigate("approve_order")}>
+    <MainLayout title="Approve Price" showBack onBack={() => onNavigate("approve_order")}>
       <div className="max-w-3xl mx-auto bg-white p-6 rounded shadow text-sm">
         <div className="grid md:grid-cols-2 gap-3 mb-4 text-xs">
           <div>
@@ -22,10 +22,6 @@ export default function ApproveOrderDetail({ order, onNavigate }: ApproveOrderDe
           <div>
             <div className="text-gray-500 mb-1">Item</div>
             <div className="font-semibold">{order.item}</div>
-          </div>
-          <div>
-            <div className="text-gray-500 mb-1">Quantity</div>
-            <div className="font-semibold">{order.qty} MT</div>
           </div>
         </div>
         <div className="grid md:grid-cols-4 gap-3 text-xs mb-4">
@@ -59,10 +55,9 @@ export default function ApproveOrderDetail({ order, onNavigate }: ApproveOrderDe
         <div className="flex gap-2 justify-end text-xs">
           <button className="px-3 py-2 border rounded bg-white hover:bg-gray-50">Reject</button>
           <button
-            onClick={() => onNavigate("create_validation_rule")}
             className="px-3 py-2 rounded bg-green-600 text-white hover:bg-green-700"
           >
-            Approve & Release Hold
+            Approve
           </button>
         </div>
       </div>
