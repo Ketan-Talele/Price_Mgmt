@@ -189,15 +189,27 @@ export default function Home({ onNavigate, onLogout }: HomeProps) {
               </button>
             </div>
 
-            <button
-              onClick={() => onNavigate('analyze_review_prices')}
-              className="flex-1 p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
-            >
-              <div className="font-semibold mb-1">Price Analysis &amp; Review</div>
-              <div className="text-xs text-gray-500">
-                View pricing analysis and review dashboard (conceptual).
-              </div>
-            </button>
+            <div className="flex-1 flex flex-col gap-4">
+              <button
+                onClick={() => onNavigate('analyze_review_prices')}
+                className="p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+              >
+                <div className="font-semibold mb-1">Price Analysis &amp; Review</div>
+                <div className="text-xs text-gray-500">
+                  View pricing analysis and review dashboard (conceptual).
+                </div>
+              </button>
+
+              <button
+                onClick={() => onNavigate('approved_prices')}
+                className="p-4 bg-white shadow rounded text-left hover:bg-gray-50 transition-colors"
+              >
+                <div className="font-semibold mb-1">Approved Prices</div>
+                <div className="text-xs text-gray-500">
+                  View all approved price requests.
+                </div>
+              </button>
+            </div>
           </div>
         )}
       </div>

@@ -27,9 +27,11 @@ import OrderStatus from "../pages/sales/OrderStatus"
 import SalesDeviationAnalysis from "../pages/sales/SalesDeviationAnalysis"
 import ApproveOrders from "../pages/approval/ApproveOrders"
 import ApproveOrderDetail from "../pages/approval/ApproveOrderDetail"
+import ApprovedPrices from "../pages/approval/ApprovedPrices"
 
 export default function AppRoutes() {
   const { isAuthenticated, logout } = useAuthStore()
+  const { role } = useAuthStore()
   const [screen, setScreen] = useState("login")
   const [selectedBatch, setSelectedBatch] = useState<Batch | null>(null)
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
@@ -141,6 +143,10 @@ export default function AppRoutes() {
       ) : (
         <ApproveOrders onNavigate={navigate} onReviewOrder={handleReviewOrder} />
       )
+
+    case "approved_prices":
+      if (role !== "director") return <Home onNavigate={navigate} onLogout={handleLogout} />
+      return <ApprovedPrices onNavigate={navigate} />
 
     default:
       return <Login onLogin={handleLogin} />
