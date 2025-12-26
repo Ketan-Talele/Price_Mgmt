@@ -5,6 +5,8 @@ import {
   Bar,
   LineChart,
   Line,
+  Area,
+  ComposedChart,
   ScatterChart,
   Scatter,
   ZAxis,
@@ -15,6 +17,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  LabelList,
 } from 'recharts';
 import { priceMovementRows } from '../../data/priceMovement';
 import {
@@ -28,6 +31,7 @@ import { useAuthStore } from '../../store/authStore';
 interface AnalyzeReviewPricesProps {
   onNavigate: (screen: string) => void;
 }
+
 
 export default function AnalyzeReviewPrices({
   onNavigate,
@@ -158,74 +162,257 @@ export default function AnalyzeReviewPrices({
             <div className="bg-white rounded shadow p-4 h-56 flex flex-col">
               <div>
                 <div className="font-semibold text-xs mb-1">
-                  Graph 1 – Price Premium vs Base Price
+                  Graph 1 – NBD/MT & Oil Price & PP
                 </div>
                 <div className="text-[11px] text-gray-500 mb-2">
-                  Conceptual placeholder for PowerBI chart showing price premium
-                  (PP) and base price over months.
+                  Showing NBD/t, Oil Price, and Price Premium over time.
                 </div>
               </div>
               <div className="flex-1 min-h-0">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
+                  <ComposedChart
                     data={[
                       {
+                        period: '202410',
+                        oilPrice: 1272,
+                        nbdt: 748,
+                        pricePremium: 524,
+                        premiumMidpoint: (1272 + 748) / 2,
+                      },
+                      {
+                        period: '202411',
+                        oilPrice: 1220,
+                        nbdt: 724,
+                        pricePremium: 496,
+                        premiumMidpoint: (1220 + 724) / 2,
+                      },
+                      {
+                        period: '202412',
+                        oilPrice: 1177,
+                        nbdt: 705,
+                        pricePremium: 472,
+                        premiumMidpoint: (1177 + 705) / 2,
+                      },
+                      {
                         period: '202501',
-                        'Base Price': 1120,
-                        'Price Premium': 100,
+                        oilPrice: 1214,
+                        nbdt: 699,
+                        pricePremium: 515,
+                        premiumMidpoint: (1214 + 699) / 2,
+                      },
+                      {
+                        period: '202502',
+                        oilPrice: 1250,
+                        nbdt: 705,
+                        pricePremium: 545,
+                        premiumMidpoint: (1250 + 705) / 2,
+                      },
+                      {
+                        period: '202503',
+                        oilPrice: 1289,
+                        nbdt: 704,
+                        pricePremium: 585,
+                        premiumMidpoint: (1289 + 704) / 2,
+                      },
+                      {
+                        period: '202504',
+                        oilPrice: 1302,
+                        nbdt: 701,
+                        pricePremium: 601,
+                        premiumMidpoint: (1302 + 701) / 2,
+                      },
+                      {
+                        period: '202505',
+                        oilPrice: 1292,
+                        nbdt: 676,
+                        pricePremium: 616,
+                        premiumMidpoint: (1292 + 676) / 2,
+                      },
+                      {
+                        period: '202506',
+                        oilPrice: 1298,
+                        nbdt: 652,
+                        pricePremium: 647,
+                        premiumMidpoint: (1298 + 652) / 2,
+                      },
+                      {
+                        period: '202507',
+                        oilPrice: 1302,
+                        nbdt: 648,
+                        pricePremium: 654,
+                        premiumMidpoint: (1302 + 648) / 2,
+                      },
+                      {
+                        period: '202508',
+                        oilPrice: 1277,
+                        nbdt: 654,
+                        pricePremium: 623,
+                        premiumMidpoint: (1277 + 654) / 2,
                       },
                       {
                         period: '202509',
-                        'Base Price': 1120,
-                        'Price Premium': 50,
+                        oilPrice: 1300,
+                        nbdt: 658,
+                        pricePremium: 642,
+                        premiumMidpoint: (1300 + 658) / 2,
+                      },
+                      {
+                        period: '202510',
+                        oilPrice: 1276,
+                        nbdt: 645,
+                        pricePremium: 631,
+                        premiumMidpoint: (1276 + 645) / 2,
+                      },
+                      {
+                        period: '202511',
+                        oilPrice: 1277,
+                        nbdt: 625,
+                        pricePremium: 652,
+                        premiumMidpoint: (1277 + 625) / 2,
                       },
                     ]}
-                    margin={{ top: 5, right: 10, left: 0, bottom: 5 }}
+                    margin={{ top: 5, right: 10, left: 0, bottom: 20 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="period"
-                      tick={{ fontSize: 10 }}
+                    <XAxis 
+                      dataKey="period" 
+                      tick={{ fontSize: 8 }}
+                      tickMargin={12}
+                      interval={0}
                       label={{
                         value: 'Period',
                         position: 'insideBottom',
                         offset: -5,
-                        style: { fontSize: 10 },
+                        style: { fontSize: 8 },
                       }}
                     />
                     <YAxis
-                      tick={{ fontSize: 10 }}
+                      domain={[200, 1600]}
+                      ticks={[200, 400, 600, 800, 1000, 1200, 1400, 1600]}
+                      tick={{ fontSize: 8 }}
                       label={{
                         value: 'EUR / MT',
                         angle: -90,
                         position: 'insideLeft',
-                        style: { fontSize: 10 },
+                        style: { fontSize: 8 },
                       }}
-                      domain={[0, 1200]}
-                      ticks={[0, 200, 400, 600, 800, 1000, 1200]}
                     />
                     <Tooltip
-                      formatter={(value: number | string | undefined) =>
-                        `${value ?? 0} EUR / MT`
-                      }
-                      labelStyle={{ fontSize: 11 }}
-                      contentStyle={{ fontSize: 11 }}
+                      formatter={(v: number | undefined) => `${v ?? 0} EUR / MT`}
+                      labelStyle={{ fontSize: 9 }}
+                      contentStyle={{ fontSize: 9 }}
                     />
                     <Legend
-                      wrapperStyle={{ fontSize: 10, paddingTop: 5 }}
-                      iconSize={12}
+                      wrapperStyle={{ fontSize: 8, paddingTop: 5 }}
+                      content={({ payload }) => (
+                        <div style={{ textAlign: 'center', paddingTop: '5px' }}>
+                          {payload?.map((entry, index) => {
+                            let color = entry.color;
+                            // Set colors for legend
+                            if (entry.value === 'Price Premium') {
+                              color = '#facc15'; // Yellow for Price Premium
+                            } else if (entry.value === 'Oil Price') {
+                              color = '#3b82f6'; // Blue for Oil Price
+                            } else if (entry.value === 'NBD/t') {
+                              color = '#ef4444'; // Red for NBD/t
+                            }
+                            return (
+                              <span
+                                key={index}
+                                style={{
+                                  color: '#333',
+                                  fontSize: '8px',
+                                  margin: '0 8px',
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    display: 'inline-block',
+                                    width: entry.value === 'Price Premium' ? '20px' : '20px',
+                                    height: entry.value === 'Price Premium' ? '2px' : '2px',
+                                    backgroundColor: color,
+                                    marginRight: '4px',
+                                    verticalAlign: 'middle',
+                                  }}
+                                />
+                                {entry.value}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
                     />
-                    <Bar
-                      dataKey="Base Price"
-                      fill="#3b82f6"
-                      name="Base Price"
-                    />
-                    <Bar
-                      dataKey="Price Premium"
-                      fill="#f97316"
+                    {/* Yellow Price Premium Area - shaded between Oil Price (top) and NBD/t (bottom) */}
+                    {/* Using Area component with baseValue to approximate fill_between */}
+                    {/* The yellow area will fill from the chart base to oilPrice */}
+                    {/* This creates a visual representation of the premium area */}
+                    <Area
+                      type="monotone"
+                      dataKey="oilPrice"
+                      stroke="none"
+                      fill="#facc15"
+                      fillOpacity={0.6}
                       name="Price Premium"
+                      baseValue={200}
                     />
-                  </BarChart>
+                    {/* Cover the area below nbdt with white to create visual separation */}
+                    <Area
+                      type="monotone"
+                      dataKey="nbdt"
+                      stroke="none"
+                      fill="#ffffff"
+                      fillOpacity={1}
+                      baseValue={200}
+                    />
+                    {/* Red NBD/t Line (Bottom) */}
+                    <Line
+                      type="monotone"
+                      dataKey="nbdt"
+                      name="NBD/t"
+                      stroke="#ef4444"
+                      strokeWidth={2}
+                      dot={{ r: 2, fill: '#ef4444' }}
+                    >
+                      <LabelList
+                        dataKey="nbdt"
+                        position="bottom"
+                        style={{ fill: '#ef4444', fontSize: 8, fontWeight: 500 }}
+                      />
+                    </Line>
+                    {/* Blue Oil Price Line (Top) */}
+                    <Line
+                      type="monotone"
+                      dataKey="oilPrice"
+                      name="Oil Price"
+                      stroke="#3b82f6"
+                      strokeWidth={2}
+                      dot={{ r: 2, fill: '#3b82f6' }}
+                    >
+                      <LabelList
+                        dataKey="oilPrice"
+                        position="top"
+                        style={{ fill: '#3b82f6', fontSize: 8, fontWeight: 500 }}
+                      />
+                    </Line>
+                    {/* Price Premium Labels - Black text at midpoint */}
+                    <Line
+                      type="monotone"
+                      dataKey="premiumMidpoint"
+                      stroke="none"
+                      strokeWidth={0}
+                      dot={false}
+                    >
+                      <LabelList
+                        dataKey="pricePremium"
+                        position="center"
+                        formatter={(value: any) => {
+                          const numValue = typeof value === 'number' ? value : Number(value) || 0;
+                          return `${numValue}`;
+                        }}
+                        style={{ fill: '#000000', fontSize: 8, fontWeight: 500 }}
+                      />
+                    </Line>
+                  </ComposedChart>
                 </ResponsiveContainer>
               </div>
             </div>
@@ -254,21 +441,21 @@ export default function AnalyzeReviewPrices({
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                       dataKey="period"
-                      tick={{ fontSize: 10 }}
+                      tick={{ fontSize: 8 }}
                       label={{
                         value: 'Period',
                         position: 'insideBottom',
                         offset: -5,
-                        style: { fontSize: 10 },
+                        style: { fontSize: 8 },
                       }}
                     />
                     <YAxis
-                      tick={{ fontSize: 10 }}
+                      tick={{ fontSize: 8 }}
                       label={{
                         value: 'FX Rate',
                         angle: -90,
                         position: 'insideLeft',
-                        style: { fontSize: 10 },
+                        style: { fontSize: 8 },
                       }}
                       domain={[0.9, 1]}
                       tickCount={6}
@@ -277,10 +464,10 @@ export default function AnalyzeReviewPrices({
                       formatter={(value: number | string | undefined) =>
                         typeof value === 'number' ? value.toFixed(4) : `${value ?? ''}`
                       }
-                      labelStyle={{ fontSize: 11 }}
-                      contentStyle={{ fontSize: 11 }}
+                      labelStyle={{ fontSize: 9 }}
+                      contentStyle={{ fontSize: 9 }}
                     />
-                    <Legend wrapperStyle={{ fontSize: 10, paddingTop: 5 }} />
+                    <Legend wrapperStyle={{ fontSize: 8, paddingTop: 5 }} />
                     <Line
                       type="monotone"
                       dataKey="fxRate"
